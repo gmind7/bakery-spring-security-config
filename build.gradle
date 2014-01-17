@@ -1,4 +1,4 @@
-description = "Spring Security Config Sample"
+description = "Bakery Spring Security Config"
 
 defaultTasks 'build'
 
@@ -99,12 +99,12 @@ configure(allprojects) {
 	  maven { url "http://repo.spring.io/libs-milestone" }
 	  maven { url "http://repo.spring.io/libs-snapshot" }
 	  maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-	  maven { url "https://raw.github.com/gmind7/gmind7.maven.repository/master/lib-releases" }
+	  maven { url "https://raw.github.com/gmind7/bakery.maven.repository/master/lib-releases" }
 	}
 	  
     uploadArchives {
 	  repositories.mavenDeployer {
-	    repository(url: "file://D:/Git/gmind7.maven.repository/lib-releases")
+	    repository(url: "file://D:/Git/bakery.maven.repository/lib-releases")
 	  }
     }
 	
@@ -241,7 +241,7 @@ project("test-spring-security-social-web"){
 	
 	dependencies {
 	  // Project
-	  compile project(":spring-security-social-config")
+	  compile project(":bakery-spring-security-social-config")
 	
       // Gmind7
       compile("com.gmind7.bakery:bakery-spring-web-api-config:$bakerySpringWebApiVersion") { force = true }
