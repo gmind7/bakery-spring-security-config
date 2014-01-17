@@ -56,23 +56,32 @@ configure(allprojects) {
     
 	group = "${group}"
 	 
-	configurations {
-	  all {
+	configurations.all {
 		//Hack to let Gradle pickup latest SNAPSHOTS
 		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 		exclude group: "commons-logging"
 		exclude module: "slf4j-log4j12"
-		exclude module: "hibernate-jpa-2.0-api"
-		crosstest
-		testCompile.extendsFrom crosstest  // testCompile이 crosstest에 의존하게 변경
-	  }
+		exclude module: "hibernate-jpa-2.0-api"		
+		//testCompile.extendsFrom crosstest  // testCompile이 crosstest에 의존하게 변경
+		//crosstest
+		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+			if (details.requested.group == 'org.springframework') {
+				details.useVersion springVersion
+			}
+			if (details.requested.group == 'org.springframework.security') {
+				details.useVersion springSecurityVersion
+			}
+			if (details.requested.group == 'org.slf4j') {
+				details.useVersion slf4jVersion
+			}
+		} 
 	}
 	
-	eclipse {
-		classpath {
-			minusConfigurations += configurations.crosstest // 불필요한 classpath 등록 방지
-		}
-	}
+//	eclipse {
+//		classpath {
+//			minusConfigurations += configurations.crosstest // 불필요한 classpath 등록 방지
+//		}
+//	}
 	
 	project.sourceCompatibility = 1.7
 	project.targetCompatibility = 1.7
@@ -95,7 +104,7 @@ configure(allprojects) {
 	  
     uploadArchives {
 	  repositories.mavenDeployer {
-	    repository(url: "file://F:/Git/gmind7.maven.repository/lib-releases")
+	    repository(url: "file://D:/Git/gmind7.maven.repository/lib-releases")
 	  }
     }
 	
@@ -138,9 +147,9 @@ configure(subprojects) { subproject ->
 
 	dependencies {
 	  // Gmind7
-      compile("com.gmind7.bakery:spring-application-config:$bakerySpringApplicationVersion") { force = true }
-	  compile("com.gmind7.bakery:spring-database-config:$bakeryDatabaseConfigVersion") { force = true }
-	  compile("com.gmind7.bakery:spring-ehcache-config:$bakerySpringEhcacheVersion") { force = true }
+      compile("com.gmind7.bakery:bakery-spring-application-config:$bakerySpringApplicationVersion") { force = true }
+	  compile("com.gmind7.bakery:bakery-spring-database-config:$bakeryDatabaseConfigVersion") { force = true }
+	  compile("com.gmind7.bakery:bakery-spring-ehcache-config:$bakerySpringEhcacheVersion") { force = true }
   
 	  // Spring
 	  compile("org.springframework:spring-core:$springVersion") { force = true }
@@ -155,6 +164,18 @@ configure(subprojects) { subproject ->
 	  compile("org.springframework:spring-orm:$springVersion") { force = true }
 	  compile("org.springframework:spring-jdbc:$springVersion") { force = true }
 	  compile("org.springframework.data:spring-data-jpa:$springDataJpaVersion") { force=true }
+	  // Spring Security
+	  compile("org.springframework.security:spring-security-core:$springSecurityVersion") { force = true }
+	  compile("org.springframework.security:spring-security-web:$springSecurityVersion") { force = true }
+	  compile("org.springframework.security:spring-security-config:$springSecurityVersion") { force = true }
+	  compile("org.springframework.security:spring-security-taglibs:$springSecurityVersion") { force = true }
+	  // Spring Social
+	  compile("org.springframework.social:spring-social-core:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-facebook:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-facebook-web:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-twitter:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-web:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-security:$springSocialVersion") { force = true }
 	  
 	  // AspectJ
 	  compile "org.aspectj:aspectjrt:$aspectjVersion"
@@ -223,8 +244,8 @@ project("test-spring-security-social-web"){
 	  compile project(":spring-security-social-config")
 	
       // Gmind7
-      compile("com.gmind7.bakery:spring-web-api-config:$bakerySpringWebApiVersion") { force = true }
-      compile("com.gmind7.bakery:spring-web-support:$bakerySpringWebSupportVersion") { force = true }
+      compile("com.gmind7.bakery:bakery-spring-web-api-config:$bakerySpringWebApiVersion") { force = true }
+      compile("com.gmind7.bakery:bakery-spring-web-support:$bakerySpringWebSupportVersion") { force = true }
   
 	  // Spring
 	  compile("org.springframework:spring-web:$springVersion") { force = true }
