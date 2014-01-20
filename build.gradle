@@ -171,11 +171,12 @@ configure(subprojects) { subproject ->
 	  compile("org.springframework.security:spring-security-taglibs:$springSecurityVersion") { force = true }
 	  // Spring Social
 	  compile("org.springframework.social:spring-social-core:$springSocialVersion") { force = true }
-	  compile("org.springframework.social:spring-social-facebook:$springSocialVersion") { force = true }
-	  compile("org.springframework.social:spring-social-facebook-web:$springSocialVersion") { force = true }
-	  compile("org.springframework.social:spring-social-twitter:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-config:$springSocialVersion") { force = true }
 	  compile("org.springframework.social:spring-social-web:$springSocialVersion") { force = true }
 	  compile("org.springframework.social:spring-social-security:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-facebook:$springSocialVersion") { force = true }
+	  compile("org.springframework.social:spring-social-facebook-web:$springSocialFacebookVersion") { force = true }
+	  compile("org.springframework.social:spring-social-twitter:$springSocialTwitterVersion") { force = true }
 	  
 	  // AspectJ
 	  compile "org.aspectj:aspectjrt:$aspectjVersion"
@@ -227,6 +228,7 @@ configure(subprojects) { subproject ->
 	  compile "com.google.guava:guava:$guavaVersion"
 	  compile "joda-time:joda-time:$jodaVersion"
 	  compile "org.projectlombok:lombok:$lombokVersion"
+	  compile "org.jadira.usertype:usertype.core:$jadiraVersion"
 	  
 	  // Testing
       testCompile("org.springframework:spring-test:$springVersion") { force = true }
