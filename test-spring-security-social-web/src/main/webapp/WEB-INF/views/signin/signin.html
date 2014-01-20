@@ -2,10 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="http://grafolio.net/css/grafolio_min.css?20140115115655"/>
     </head>
     <body>
-        <a href="/auth/facebook?scope=email,offline_access">페이스북으로 회원 가입</a>
-        <br></br>
-        <a href="/auth/twitter">트위터로 회원 가입</a>
+        <!-- content -->
+        <div id="content">
+            <div class="article_sns2">
+                <ul class="sel_type">
+                <li><a href="/auth/facebook?scope=email,offline_access" class="facebook">페이스북으로 회원가입</a></li>
+                <li><a href="/auth/facebook?scope=email,offline_access" class="twitter">트위터로 회원가입</a></li>
+                <li><a href="/auth/facebook?scope=email,offline_access" class="naver">네이버로 회원가입</a></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>
