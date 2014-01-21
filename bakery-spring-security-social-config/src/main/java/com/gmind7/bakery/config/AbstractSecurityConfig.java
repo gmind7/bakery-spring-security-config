@@ -62,15 +62,16 @@ public abstract class AbstractSecurityConfig extends WebSecurityConfigurerAdapte
         return new UserDetailsServiceImpl(userRepository);
     }
 
-    @Override
-    protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, true from Account where username = ?")
-                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from Account where username = ?")
-                .and()
-            .authenticationProvider(socialAuthenticationProvider);
-    }
+    // 이 부분 적용 필요
+//    @Override
+//    protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password, true from Account where username = ?")
+//                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from Account where username = ?")
+//                .and()
+//            .authenticationProvider(socialAuthenticationProvider);
+//    }
     
     
     
