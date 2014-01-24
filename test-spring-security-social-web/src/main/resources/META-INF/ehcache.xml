@@ -10,6 +10,7 @@
 	</defaultCache>
 	
 	<cache
+<<<<<<< HEAD
       name="Customers"
       maxElementsInMemory="10000"
       eternal="false"
@@ -73,6 +74,15 @@
       timeToLiveSeconds="3600">
     </cache>
 	
+=======
+      name="Users"
+      maxElementsInMemory="10000"
+      eternal="false"
+      timeToIdleSeconds="3600"
+      timeToLiveSeconds="3600">
+    </cache>
+    
+>>>>>>> refs/heads/develop
 	<cache
 	  name="org.hibernate.cache.internal.StandardQueryCache"
 	  maxElementsInMemory="10000"

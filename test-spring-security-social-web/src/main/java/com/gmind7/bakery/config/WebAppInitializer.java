@@ -16,10 +16,12 @@ public class WebAppInitializer extends AbstractWebAppInitializer {
 		encodingFilter.setEncoding("UTF-8");
 		encodingFilter.setForceEncoding(true);
 		
-		DelegatingFilterProxy springSecurityFilterChain = new DelegatingFilterProxy();
+		DelegatingFilterProxy securityFilter = new DelegatingFilterProxy();
+	    securityFilter.setTargetBeanName("springSecurityFilterChain");
+
 		
-		return new javax.servlet.Filter[] { encodingFilter, 
-											springSecurityFilterChain,
+		return new javax.servlet.Filter[] { encodingFilter,
+											securityFilter,
 			                                new HiddenHttpMethodFilter(), 
 			                                new ShallowEtagHeaderFilter() };
 	}

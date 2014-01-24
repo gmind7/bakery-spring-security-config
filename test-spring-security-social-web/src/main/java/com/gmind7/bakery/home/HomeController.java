@@ -1,4 +1,4 @@
-package com.gmind7.bakery.web;
+package com.gmind7.bakery.home;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(){
 		log.debug("welcome to the gmind7 bakery homeController.............");
-		return "index";
+		return "/home/home";
 	}
 	
 }
